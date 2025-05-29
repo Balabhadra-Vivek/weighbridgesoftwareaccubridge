@@ -1,0 +1,15 @@
+<div class="main-container" fxLayout="column" fxLayoutGap="2px" fxLayoutAlign="space-between">
+	<header class="app-bar">
+		<app-navigation *ngIf="isLoggedIn"></app-navigation>
+	</header>
+	<!-- Main -->
+	<main class="main-container" fxFlex="grow" fxLayout="row" fxLayoutAlign="start">
+		<div fxFlex="80">
+			<router-outlet></router-outlet>
+		</div>
+		<div fxFlex="20">
+			<app-weighbridge-record *ngIf="isLoggedIn"></app-weighbridge-record>
+		</div>
+	</main>
+	<notifier-container></notifier-container>
+</div>

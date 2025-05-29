@@ -1,0 +1,124 @@
+<div class="outer-container">
+  <div class="container">
+    <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+      <div class="box-title">Truck Weighment</div>
+      <div fxLayout fxLayoutGap="16px" fxLayoutAlign="center center">
+        <app-help [tag]="'TRUCK_WEIGHMENT_DATAENTRY'"></app-help>
+        <h4>Date - {{currDate.getDate()}} / {{currDate.getMonth()+1}} / {{currDate.getFullYear()}} {{currDate.getHours()}}:{{currDate.getMinutes()}}</h4>
+      </div>
+    </div>
+    <div class="inner-container" [ngClass]="{'red': weighment.weighmentType === 'others', 'blue': weighment.weighmentType === 'inbound', 'green' : weighment.weighmentType.indexOf('outbound')>-1}" fxLayout="column" fxLayoutGap="4px">
+      <div fxLayout="column" fxLayoutGap="8px">
+        <div fxLayout fxLayoutAlign="space-between center" *ngIf="enableWeighmentTypes==='yes'">
+          <mat-radio-group tabindex="-1" [(ngModel)]="weighment.weighmentType" aria-label="Select weightment type" fxLayout fxLayoutGap="32px" fxLayoutAlign="start">
+            <mat-radio-button *ngIf="enableInbound" tabindex="-1" value="inbound">Inbound(Purchase)</mat-radio-button>
+            <mat-radio-button *ngIf="enableOutbound" tabindex="-1" value="outbound">Outbound</mat-radio-button>
+            <mat-radio-button *ngIf="enableOutboundExport" tabindex="-1" value="outbound_export">Outbound(Export)</mat-radio-button>
+            <mat-radio-button *ngIf="enableOutboundDomestic" tabindex="-1" value="outbound_domestic">Outbound(Domestic)</mat-radio-button>
+            <mat-radio-button *ngIf="enableOutboundSubcontract" tabindex="-1" value="outbound_subcontract">Outbound(Sub-contract Dispatch)</mat-radio-button>
+            <mat-radio-button *ngIf="enableInternal" tabindex="-1" value="internal">Internal</mat-radio-button>
+            <mat-radio-button *ngIf="enableOthers" tabindex="-1" value="others">Others</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px">
+          <mat-form-field appearance="outline">
+            <mat-label>Vehicle No</mat-label>
+            <input *ngIf="enableWhiteSpacesInVehicle" vehicleMask matInput #vehicleCntl [(ngModel)]="weighment.vehicleNo" name="cntlRequestId"
+                   (keyup.enter)="parseQRString(weighment.vehicleNo)"
+                   (contextmenu)="paste($event)"
+                   (blur)="parseQRString(weighment.vehicleNo)" tabindex="0" placeholder="Vehicle No." />
+            <input *ngIf="!enableWhiteSpacesInVehicle" appCapitalize matInput #vehicleCntl [(ngModel)]="weighment.vehicleNo" name="cntlRequestId"
+                   (keyup.enter)="parseQRString(weighment.vehicleNo)"
+                   (contextmenu)="paste($event)"
+                   (blur)="parseQRString(weighment.vehicleNo)" tabindex="0" placeholder="Vehicle No." />
+            <button tabindex="-1" mat-icon-button matSuffix color="primary" (click)="openSearchDialog()"><mat-icon>open_in_new</mat-icon></button>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>RST No</mat-label>
+            <input matInput [(ngModel)]="weighment.rstNo" name="cntlRSTNo"
+                   (keyup.enter)="parseQRString(weighment.rstNo.toString())"
+                   (blur)="parseQRString(weighment.rstNo.toString())" readonly disabled />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Weighment Slip No</mat-label>
+            <input matInput [(ngModel)]="weighmentDetail.id" name="cntlWeighSlipNo" disabled readonly tabindex="-1" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Miscellenous</mat-label>
+            <input matInput [(ngModel)]="weighment.misc" />
+          </mat-form-field>
+          <!--<button tabindex="-1" mat-icon-button color="primary" (click)="openSearchDialog()"><mat-icon>open_in_new</mat-icon></button>-->
+          <mat-form-field appearance="outline">
+            <mat-label>Container No.</mat-label>
+            <input matInput [(ngModel)]="weighment.reqId" name="cntlRequestId" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>License No.</mat-label>
+            <input matInput [(ngModel)]="weighment.gatePassNo" name="cntlGatePassNo" />
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Driver Name</mat-label>
+            <input matInput [(ngModel)]="weighment.scrollNo" name="cntlscrollNo"/>
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>PUC No.</mat-label>
+            <input matInput [(ngModel)]="weighment.scrollDate" name="cntlscrollDate"
+                  maxlength="255" />
+          </mat-form-field>
+          <!-- <mat-form-field fxFlex appearance="outline" *ngIf="weighment.weighmentType.indexOf('outbound')>-1">
+            <mat-label>Request Id Date</mat-label>
+            <input matInput [(ngModel)]="weighment.reqIdDate" name="cntlReqIdDate" maxlength="8" />
+          </mat-form-field> -->
+
+          <app-tag-selector *ngIf="isSeachFieldEnabled('supplier')" [tagTypeId]="1" [selectedTag]="weighmentDetail.supplier" [title]="'Supplier'" (optionSelected)="supplierSelected($event)"></app-tag-selector>
+          <app-tag-selector *ngIf="isSeachFieldEnabled('customer')" #customerCntl [tagTypeId]="4" [selectedTag]="customer" [title]="'Customer'" (optionSelected)="customerSelected($event)"></app-tag-selector>
+          <app-tag-selector *ngIf="isSeachFieldEnabled('transporter')" #transporterCntl [tagTypeId]="3" [selectedTag]="transporter" [title]="'Transporter'" (optionSelected)="transporterSelected($event)"></app-tag-selector>
+          <app-tag-selector *ngIf="isSeachFieldEnabled('material')" [tagTypeId]="2" [selectedTag]="weighmentDetail.material" [title]="'Material*'" (optionSelected)="materialSelected($event)"></app-tag-selector>
+        </div>
+        <!--<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="16px">
+          
+        </div>-->
+        <div fxLayout fxLayoutAlign="start center" fxLayoutGap="16px">
+          <mat-form-field appearance="outline" class="weight">
+            <mat-label>First Weight</mat-label>
+            <input matInput [(ngModel)]="weighmentDetail.firstWeight" (input)="weightUpdated($event, 'firstweight')" [disabled] = "!enableWeightEditing && !enterFirstWeightManually"
+                   (change)="weightUpdated($event, 'firstweight')" name="cntlFirstWt" tabindex="-1"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="weight">
+            <mat-label>Second Weight</mat-label>
+            <input matInput [(ngModel)]="weighmentDetail.secondWeight" (input)="weightUpdated($event, 'secondweight')" [disabled]="!enableWeightEditing"
+                   (change)="weightUpdated($event, 'secondweight')" name="cntlSecondWt" tabindex="-1" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="weight">
+            <mat-label>Net Weight</mat-label>
+            <input matInput [(ngModel)]="weighmentDetail.netWeight" name="cntlNetWeight" readonly tabindex="-1" />
+          </mat-form-field>
+        </div>
+        <div class="full-width">
+          <mat-form-field appearance="outline" fxFlex>
+            <mat-label>Remark</mat-label>
+            <input matInput [(ngModel)]="weighmentDetail.remark" tabindex="-1" />
+          </mat-form-field>
+        </div>
+        <div class="full-width" fxLayout fxLayoutGap="32px" fxLayoutAlign="space-between center">
+          <button mat-raised-button class="capture-button" color="primary"
+                  *ngIf="selectedIndicator && selectedIndicator['stringType']!=='polling'"
+                  [disabled]="(stableWeightCheckEnabled && !isWeightStable) || weighment.status==='complete'" (click)="capture()">
+            Capture
+          </button>
+          <button mat-raised-button class="capture-button" color="primary"
+                  *ngIf="selectedIndicator && selectedIndicator['stringType']==='polling'" (click)="getWeight()">
+            Capture
+          </button>
+          <div fxLayout fxLayoutGap="32px" fxLayoutAlign="center center">
+            <mat-checkbox *ngIf="weighmentDetail.secondWeight && weighmentDetail.firstWeight!=undefined && weighmentDetail.firstWeight!=null && !enterFirstWeightManually" [(ngModel)]="isComplete">Is Complete</mat-checkbox>
+            <button mat-raised-button color="primary" (click)="save()">Save</button>
+            <button mat-raised-button color="error" (click)="reset(true)">Reset</button>
+          </div>
+        </div>
+      </div>
+      <app-weighment-details [weighmentDetails]="weighment.weighmentDetails"></app-weighment-details>
+    </div>
+  </div>
+</div>

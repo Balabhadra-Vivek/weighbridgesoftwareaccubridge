@@ -1,0 +1,116 @@
+<div class="container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="32px">
+  <div fxLayout="column" class="full-width">
+    <div fxLayout fxLayoutAlign="space-between center">
+      <mat-form-field>
+        <input matInput placeholder="Field Name" [value]="additionalFields[0].fieldName" [(ngModel)]="additionalFields[0].fieldName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Display Name" [value]="additionalFields[0].displayName" [(ngModel)]="additionalFields[0].displayName">
+      </mat-form-field>
+      <mat-select [(ngModel)]="additionalFields[0].dataType" placeholder="Type" name="cntlType">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="number">Number</mat-option>
+        <mat-option value="tf">True/False</mat-option>
+        <mat-option value="yn">Yes/No</mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="additionalFields[0].inOutMode" placeholder="Mode" name="cntlMode">
+        <mat-option value="generic">Generic</mat-option>
+        <mat-option value="inbound">Inbound</mat-option>
+        <mat-option value="outbound">Outbound</mat-option>
+      </mat-select>
+      <mat-checkbox [(ngModel)]="additionalFields[0].isMandatory">Is Mandatory</mat-checkbox>
+      <mat-checkbox [(ngModel)]="additionalFields[0].isActive">Is Active</mat-checkbox>
+    </div>
+
+    <div fxLayout fxLayoutAlign="space-between center">
+      <mat-form-field>
+        <input matInput placeholder="Field Name" [value]="additionalFields[1].fieldName" [(ngModel)]="additionalFields[1].fieldName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Display Name" [value]="additionalFields[1].displayName" [(ngModel)]="additionalFields[1].displayName">
+      </mat-form-field>
+      <mat-select [(ngModel)]="additionalFields[1].dataType" placeholder="Type" name="cntlType">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="number">Number</mat-option>
+        <mat-option value="tf">True/False</mat-option>
+        <mat-option value="yn">Yes/No</mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="additionalFields[1].inOutMode" placeholder="Mode" name="cntlMode">
+        <mat-option value="generic">Generic</mat-option>
+        <mat-option value="inbound">Inbound</mat-option>
+        <mat-option value="outbound">Outbound</mat-option>
+      </mat-select>
+      <mat-checkbox [(ngModel)]="additionalFields[1].isMandatory">Is Mandatory</mat-checkbox>
+      <mat-checkbox [(ngModel)]="additionalFields[1].isActive">Is Active</mat-checkbox>
+    </div>
+
+    <div fxLayout fxLayoutAlign="space-between center">
+      <mat-form-field>
+        <input matInput placeholder="Field Name" [value]="additionalFields[2].fieldName" [(ngModel)]="additionalFields[2].fieldName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Display Name" [value]="additionalFields[2].displayName" [(ngModel)]="additionalFields[2].displayName">
+      </mat-form-field>
+      <mat-select [(ngModel)]="additionalFields[2].dataType" placeholder="Type" name="cntlType">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="number">Number</mat-option>
+        <mat-option value="tf">True/False</mat-option>
+        <mat-option value="yn">Yes/No</mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="additionalFields[2].inOutMode" placeholder="Mode" name="cntlMode">
+        <mat-option value="generic">Generic</mat-option>
+        <mat-option value="inbound">Inbound</mat-option>
+        <mat-option value="outbound">Outbound</mat-option>
+      </mat-select>
+      <mat-checkbox [(ngModel)]="additionalFields[2].isMandatory">Is Mandatory</mat-checkbox>
+      <mat-checkbox [(ngModel)]="additionalFields[2].isActive">Is Active</mat-checkbox>
+    </div>
+
+    <div fxLayout fxLayoutAlign="space-between center">
+      <mat-form-field>
+        <input matInput placeholder="Field Name" [value]="additionalFields[3].fieldName" [(ngModel)]="additionalFields[3].fieldName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Display Name" [value]="additionalFields[3].displayName" [(ngModel)]="additionalFields[3].displayName">
+      </mat-form-field>
+      <mat-select [(ngModel)]="additionalFields[3].dataType" placeholder="Type" name="cntlType">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="number">Number</mat-option>
+        <mat-option value="tf">True/False</mat-option>
+        <mat-option value="yn">Yes/No</mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="additionalFields[3].inOutMode" placeholder="Mode" name="cntlMode">
+        <mat-option value="generic">Generic</mat-option>
+        <mat-option value="inbound">Inbound</mat-option>
+        <mat-option value="outbound">Outbound</mat-option>
+      </mat-select>
+      <mat-checkbox [(ngModel)]="additionalFields[3].isMandatory">Is Mandatory</mat-checkbox>
+      <mat-checkbox [(ngModel)]="additionalFields[3].isActive">Is Active</mat-checkbox>
+    </div>
+
+    <div fxLayout fxLayoutAlign="space-around center">
+      <mat-form-field>
+        <input matInput placeholder="Field Name" [value]="additionalFields[4].fieldName" [(ngModel)]="additionalFields[4].fieldName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Display Name" [value]="additionalFields[4].displayName" [(ngModel)]="additionalFields[4].displayName">
+      </mat-form-field>
+      <mat-select [(ngModel)]="additionalFields[4].dataType" placeholder="Type" name="cntlType">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="number">Number</mat-option>
+        <mat-option value="tf">True/False</mat-option>
+        <mat-option value="yn">Yes/No</mat-option>
+      </mat-select>
+      <mat-select [(ngModel)]="additionalFields[4].inOutMode" placeholder="Mode" name="cntlMode">
+        <mat-option value="generic">Generic</mat-option>
+        <mat-option value="inbound">Inbound</mat-option>
+        <mat-option value="outbound">Outbound</mat-option>
+      </mat-select>
+      <mat-checkbox [(ngModel)]="additionalFields[4].isMandatory">Is Mandatory</mat-checkbox>
+      <mat-checkbox [(ngModel)]="additionalFields[4].isActive">Is Active</mat-checkbox>
+    </div>
+    <div class="full-width">
+      <button mat-raised-button color="primary" (click)="save()">Save <mat-icon>save</mat-icon></button>
+    </div>
+  </div>
+</div>

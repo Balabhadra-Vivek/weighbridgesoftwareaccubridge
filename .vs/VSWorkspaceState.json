@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\admin",
+    "\\src\\app\\admin\\printer-setup",
+    "\\src\\app\\admin\\ticket-setup",
+    "\\src\\app\\authentication",
+    "\\src\\app\\authentication\\login",
+    "\\src\\environments"
+  ],
+  "PreviewInSolutionExplorer": false
+}

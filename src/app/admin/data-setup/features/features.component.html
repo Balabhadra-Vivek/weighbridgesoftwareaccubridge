@@ -1,0 +1,21 @@
+<mat-card class="inner-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="32px">
+  <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+    <div class="box-title">Features</div>
+    <app-help [tag]="'DATA_SETUP'"></app-help>
+  </div>
+  <div class="content-box" fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="32px">
+      <mat-checkbox name="cntl1" [(ngModel)]="enableInboundOutbound" class="example-margin">Enable Inbound/Outbound</mat-checkbox>
+      <mat-checkbox name="cntl2" [(ngModel)]="enableInternalWeight" class="example-margin">Enable internal weight</mat-checkbox>
+      <mat-checkbox name="cntl3" [(ngModel)]="enableDataEditAfterCompletion" class="example-margin">Enable data edit after completion</mat-checkbox>
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Maximum length for textfield</mat-label>
+          <input name="cntlTextfieldLength"  matInput placeholder="Maximum length for textfield" [(ngModel)]="maxTextfieldLength">
+        </mat-form-field>
+      </form>
+      <div fxLayout fxLayoutAlign="center center" fxLayoutGap="32px">
+        <!--<button mat-raised-button color="primary">Reload Sequences</button>-->
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+      </div>
+  </div>
+</mat-card>

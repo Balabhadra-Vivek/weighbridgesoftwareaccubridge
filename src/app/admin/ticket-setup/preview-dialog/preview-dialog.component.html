@@ -1,0 +1,27 @@
+<div fxLayout fxLayoutAlign="space-between center" id="non-printable">
+  <h3 matDialogTitle>Ticket Preview</h3>
+  <button mat-icon-button matDialogClose color="accent"><mat-icon>close</mat-icon></button>
+</div>
+
+<div id="ticket-content" class="ticket" [ngStyle]="{'font-size': fontSize+'px'}" [innerHtml]="htmlContent | safeHtml"></div>
+
+<mat-dialog-actions fxLayout fxLayoutGap="32px" fxLayoutAlign="center center" id="non-printable">
+  <mat-form-field appearance="outline">
+    <mat-label>Printer Type</mat-label>
+    <mat-select [(ngModel)]="printerType" (ngModelChange)="selectedPrinterTypeUpdated()" name="cntlPrintingType">
+      <mat-option [value]="'DOT-MATRIX'">Dot-Matrix</mat-option>
+      <mat-option [value]="'GRAPHICAL'">Graphical</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Printer</mat-label>
+    <mat-select [(ngModel)]="selectedPrinter" (ngModelChange)="selectedPrinterUpdated()" placeholder="Select a printer">
+      <mat-label>Select a printer</mat-label>
+      <mat-option *ngFor="let printer of printers" [value]="printer">{{printer.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button (click)="print()" color="primary">Print</button>
+  </div>
+
+</mat-dialog-actions>

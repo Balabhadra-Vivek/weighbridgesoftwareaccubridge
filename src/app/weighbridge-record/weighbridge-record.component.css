@@ -1,0 +1,84 @@
+.icon-container{
+    border: 1px solid #000000;
+    border-radius: 30px;
+    padding: 4px;
+    background-color: #d3d3d3;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 8px;
+  font-size: smaller;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+  padding: 8px;
+  font-size: smaller;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+tr.mat-row, tr.mat-header-row{
+  height: auto;
+  cursor: pointer;
+}
+
+  tr.mat-row.pending-long {
+    background-color: #F44336;
+  }
+
+  tr.mat-row.pending-long td.mat-cell{
+    color: white;
+  }
+
+.mat-row:nth-child(even) {
+  background-color: silver;
+}
+
+  .bordered {
+    border: 1px solid;
+    padding: 4px;
+  }
+
+.pending-record-row{
+    cursor: pointer;
+}
+
+.main-container{
+    max-height: 98%;
+    padding-top: 20px;
+}
+
+.mat-card{
+    max-height: inherit;
+    overflow-y: auto;
+}
+
+.curr-weight-green {
+  font-size: 60px;
+  color: #25ab25;
+}
+
+.mat-list-item {
+    cursor: pointer;
+}
+
+  .mat-list-item:nth-child(odd) {
+    background-color: #efefef;
+  }
+
+.curr-weight-red {
+  font-size: 60px;
+  color: #ff2f2f;
+}
+
+.record-item-left{
+    padding-right: 8px;
+}
+
+.record-item-right {
+  padding-left: 8px;
+}

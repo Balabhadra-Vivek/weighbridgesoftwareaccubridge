@@ -1,0 +1,69 @@
+.card-container{
+    height:90vh;
+    background-color: transparent;
+    padding-left: 15vw;
+    padding-top: 15vh;
+}
+
+mat-card{
+}
+
+//::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+//  background-color: white;
+//  border-radius: 25px;
+//  color: transparent;
+//}
+
+::ng-deep .mat-input-element {
+  border-radius: 25px;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  border-radius: 25px !important;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.3em 0px !important;
+}
+
+//::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+//  margin-top: -15px;
+//  color: transparent;
+//}
+
+::ng-deep label.ng-star-inserted {
+  transform: translateY(-0.59375em) scale(0.75) !important;
+}
+
+.cardForm .font-small {
+  font-size: 0.6rem;
+}
+
+.cardForm .z-depth-1a {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+
+.cardForm .z-depth-1-half,
+.cardForm .btn:hover {
+  -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+
+mat-tab-group{
+	border: dashed;
+	padding: 10px;
+	margin:10px;
+}
+
+button.login {
+  background-color: #9be14b;
+  color: dimgrey;
+  border-radius: 25px;
+  padding: 2px 40px;
+  min-height:0px;
+}
+
+button.initial-setup{
+    background-color: transparent;
+}

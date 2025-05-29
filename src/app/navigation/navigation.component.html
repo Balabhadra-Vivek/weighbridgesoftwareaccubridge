@@ -1,0 +1,61 @@
+<app-progress-spinner></app-progress-spinner>
+<mat-toolbar>
+	<mat-toolbar-row fxLayout fxLayoutAlign="space-between end">
+		<div fxLayout fxLayoutAlign="start center">
+			<a  (click)="navigateTo('/home', 'home')"><img style="cursor: pointer" src="assets/logo.png" width="200" /></a>
+		</div>
+		<div fxLayout fxLayoutAlign="start end" fxLayoutGap="40px">
+			<button tabindex="-1" *ngIf="isLicenseValid" class="menu-button" [ngClass]="{'selected': selectedMenu === 'dataentry'}" mat-button [matMenuTriggerFor]="dataentry">Data Entry</button>
+			<button tabindex="-1" class="menu-button" [ngClass]="{'selected': selectedMenu === 'reports'}" mat-button [matMenuTriggerFor]="reports">Reports</button>
+			<button tabindex="-1" class="menu-button" [ngClass]="{'selected': selectedMenu === 'administration'}" mat-button [matMenuTriggerFor]="administration">Administration</button>
+			<button tabindex="-1" class="menu-button" [ngClass]="{'selected': selectedMenu === 'options'}" mat-button [matMenuTriggerFor]="options">Options</button>
+			<button tabindex="-1" class="menu-button" [ngClass]="{'selected': selectedMenu === 'help'}" mat-button [matMenuTriggerFor]="help">Help</button>
+		</div>
+		<div fxLayout fxLayoutAlign="end center">
+			<button tabindex="-1" class="menu-button" [ngClass]="{'selected': selectedMenu === 'options'}" mat-button [matMenuTriggerFor]="options">{{name}}</button>
+			<!--<button tabindex="-1" mat-icon-button (click)="navigateTo('home')"><mat-icon>home</mat-icon></button>-->
+			<button tabindex="-1" mat-icon-button (click)="navigateTo('/home', 'home')"><mat-icon [ngClass]="{'colored': selectedMenu === 'home'}">home</mat-icon></button>
+			<button tabindex="-1" mat-icon-button (click)="showInfoAlert()"><mat-icon [ngClass]="{'colored': selectedMenu === 'info'}">info</mat-icon></button>
+			<button tabindex="-1" mat-icon-button (click)="alertLogout()"><mat-icon>power_settings_new</mat-icon></button>
+		</div>
+	</mat-toolbar-row>
+	<mat-menu #dataentry="matMenu">
+		<button mat-menu-item (click)="navigateTo('weighment', 'dataentry')" *ngIf="isAuthorized(1)">Weightment</button>
+		<button mat-menu-item (click)="navigateTo('vehicle-setup', 'dataentry')" *ngIf="isAuthorized(4)">Vehicle Setup</button>
+		<button mat-menu-item (click)="syncWithSAP()" *ngIf="isAuthorized(1) && isSAPSyncEnabled">Sync With SAP</button>
+	</mat-menu>
+	<mat-menu #reports="matMenu">
+		<button mat-menu-item (click)="navigateTo('reports', 'reports')" *ngIf="isAuthorized(8)">Weightment Reports</button>
+		<button mat-menu-item (click)="navigateTo('reports/complete-weighment-report', 'reports')" *ngIf="isAuthorized(8)">Completed Weighments Report</button>
+		<button mat-menu-item (click)="navigateTo('reports/audit-log', 'reports')" *ngIf="isAuthorized(8)">Audit Log</button>
+		<button mat-menu-item (click)="navigateTo('reports/custom-reports', 'reports')" *ngIf="isAuthorized(8)">Custom Reports</button>
+		<button mat-menu-item (click)="navigateTo('reports/daily-collection-report', 'reports')" *ngIf="isAuthorized(8)">Daily Operator Collection Report</button>
+		<button mat-menu-item (click)="navigateTo('reports/zero-check-report', 'reports')" *ngIf="isAuthorized(8)">Zero Check Report</button>
+		<button mat-menu-item (click)="navigateTo('reports/notification-log', 'reports')" *ngIf="isAuthorized(8)">Notification Log</button>
+		<button mat-menu-item (click)="navigateTo('reports/theft-detection-report', 'reports')" *ngIf="isAuthorized(8)">Theft Detection Report</button>
+		<button mat-menu-item (click)="navigateTo('reports/wasted-report', 'reports')">Blocked Weighment Report</button>
+	</mat-menu>
+	<mat-menu #administration="matMenu">
+		<button mat-menu-item (click)="navigateTo('admin')" *ngIf="isAuthorized(2)">Data Setup</button>
+		<button mat-menu-item (click)="navigateTo('admin/weighbridge-setup')" *ngIf="isAuthorized(2)">Weightbridge Setup</button>
+		<!-- <button mat-menu-item>Default Value Setup</button> -->
+		<button mat-menu-item (click)="navigateTo('admin/printer-setup')" *ngIf="isAuthorized(2)">Printer Setup</button>
+		<button mat-menu-item (click)="navigateTo('admin/ticket-setup')" *ngIf="isAuthorized(3)">Ticket Setup</button>
+		<button mat-menu-item (click)="navigateTo('admin/report-setup')" *ngIf="isAuthorized(2)">Report Setup</button>
+		<button mat-menu-item (click)="navigateTo('admin/email-setup')" *ngIf="isAuthorized(2)">Email Setup</button>
+		<button mat-menu-item *ngIf="isAuthorized(2)">SMS Setup</button>
+		<button mat-menu-item *ngIf="isAuthorized(2)">REST Setup</button>
+		<button mat-menu-item (click)="navigateTo('admin/user-management')" *ngIf="isAuthorized(10)">User Management</button>
+		<button mat-menu-item (click)="navigateTo('admin/db-backup')" *ngIf="isAuthorized(5)">Database Backup</button>
+		<button mat-menu-item (click)="navigateTo('admin/sap-config')" *ngIf="isAuthorized(14)">SAP Config</button>
+		<button mat-menu-item (click)="navigateTo('admin/camera-setup')" *ngIf="isAuthorized(2)">Camera Setup</button>
+		<button mat-menu-item *ngIf="isAuthorized(2)">Digital IO Controller Setup</button>
+	</mat-menu>
+	<mat-menu #options="matMenu">
+		<button mat-menu-item>Change Password</button>
+		<button mat-menu-item (click)="alertLogout()">Logout</button>
+	</mat-menu>
+	<mat-menu #help="matMenu">
+		<button mat-menu-item (click)="showInfoAlert()">About</button>
+	</mat-menu>
+</mat-toolbar>

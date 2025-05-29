@@ -1,0 +1,26 @@
+<mat-card class="inner-container" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="32px">
+  <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+    <div class="box-title">Field Setup</div>
+    <!--<app-help [tag]="'DATA_SETUP'"></app-help>-->
+  </div>
+  <div fxLayout>
+    <div class="content-box" fxLayout="column">
+      <mat-form-field appearance="outline">
+        <mat-label>Date Format</mat-label>
+        <input name="cntlDateFormat" [(ngModel)]="dateFormat" matInput placeholder="Date format for report and ticket">
+      </mat-form-field>
+      <mat-checkbox name="cntEnableWhiteSpacesInVehicle" [(ngModel)]="enableWhiteSpacesInVehicle" class="example-margin">Enable whitespace in vehicle number</mat-checkbox>
+      <mat-checkbox name="cntEnableWeightEditing" [(ngModel)]="enableWeightEditing" class="example-margin">Enable freetext weight</mat-checkbox>
+      <mat-checkbox name="cntlEnterFirstWeightManually" [(ngModel)]="enterFirstWeightManually" class="example-margin">Enter first weight manually</mat-checkbox>
+      <div fxLayout fxLayoutAlign="center center" fxLayoutGap="32px">
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout fxLayoutAlign="space-between center">
+
+      </div>
+    </div>
+  </div>
+  
+</mat-card>
